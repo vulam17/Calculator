@@ -4,7 +4,7 @@ let chain = " "
 function num(e) {
     //Nhap tham so thu 1
     if (operator === "") {
-        if ((((e.innerHTML) >= 0 && (e.innerHTML) <= 9) || (e.innerHTML == ".") || (e.innerHTML == "-")) && (num1.toString().length < 11)) {
+        if ((((e.innerHTML) >= 0 && (e.innerHTML) <= 9) || (e.innerHTML == ".") || (e.innerHTML == "-")) && (num1.toString().length < 13)) {
             if(((e.innerHTML == ".") && (num1 !== "") && (dotFlag == false)) ||((e.innerHTML != ".")))
             {
                 let temp = []
@@ -120,7 +120,7 @@ function num(e) {
     }
     //Nhap tham so thu 2
     if ((num1 !== "") && (operator !== "")) {
-        if ((((e.innerHTML) >= 0 && (e.innerHTML) <= 9) || (e.innerHTML == ".")) && (Number(num2) < 9999999999)) {
+        if ((((e.innerHTML) >= 0 && (e.innerHTML) <= 9) || (e.innerHTML == ".")) && (num2.toString().length < 13)) {
             if(((e.innerHTML == ".") && (num2 !== "") && (dotFlag == false)) ||((e.innerHTML != ".")))
             {
                 let temp = []
@@ -172,10 +172,14 @@ function displayChain()
 }
     //Chinh sua cach hien thi
 function fixNumber(num) {
-    if((Number(num) > 99999999999) || (Number(num) < -99999999999)) num = Number(num).toExponential()
-    console.log(num)
     let tempDec = ""
     let tempNegative = "", tempNega = []
+    if(num.toString().indexOf("e") !== -1)
+    {
+        let temp = num.toString()
+        tempDec = temp.split("").splice(temp.toString().indexOf("e"),temp.length).join("")
+        num = Number(num).toExponential()
+    }
     if(num.toString().split("")[0] == "-") 
     {
         tempNega = num.toString().split("")
