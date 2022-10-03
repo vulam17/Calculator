@@ -1,6 +1,8 @@
 let num1 = "", num2 = "", operator = "", r = 0, dotFlag = false, negativeFlag = false;
 let chain = " "
+//Nguoi dung nhan nut
 function num(e) {
+    //Nhap tham so thu 1
     if (operator === "") {
         if ((((e.innerHTML) >= 0 && (e.innerHTML) <= 9) || (e.innerHTML == ".") || (e.innerHTML == "-")) && (num1.toString().length < 11)) {
             if(((e.innerHTML == ".") && (num1 !== "") && (dotFlag == false)) ||((e.innerHTML != ".")))
@@ -40,7 +42,7 @@ function num(e) {
         display(num1)
         displayChain()
     }
-
+     //Nhap toan tu
     if (num1 !== "") {
         if (e.innerHTML == "+") {
             if ((operator == "") || (operator !== "+")) 
@@ -102,7 +104,7 @@ function num(e) {
             }
             dotFlag = false
         }
-
+         //Nguoi dung nhan nut =
         if ((e.innerHTML) == "=") {
             if((num1!=="") && (operator!="") && (num2!==""))
             {
@@ -116,6 +118,7 @@ function num(e) {
             }
         }
     }
+    //Nhap tham so thu 2
     if ((num1 !== "") && (operator !== "")) {
         if ((((e.innerHTML) >= 0 && (e.innerHTML) <= 9) || (e.innerHTML == ".")) && (Number(num2) < 99999999999)) {
             if(((e.innerHTML == ".") && (num2 !== "") && (dotFlag == false)) ||((e.innerHTML != ".")))
@@ -144,7 +147,7 @@ function num(e) {
             }
         }
     }
-
+    //Nhan nut C
     if ((e.innerHTML === "C")) {
         num1 = ""
         num2 = ""
@@ -156,15 +159,18 @@ function num(e) {
         dotFlag = false
     }
 }
+//Ham hien thi so to
 function display(num)
 {
    if(num != "-") document.getElementById("result").innerHTML = fixNumber(num)
    else document.getElementById("result").innerHTML = "-"
 }
+//Ham hien thi so nho
 function displayChain()
 {
     document.getElementById("his").innerHTML = chain
 }
+//Chinh sua cach hien thi
 function fixNumber(num) {
     if((Number(num) > 99999999999) || (Number(num) < -99999999999)) num = Number(num).toExponential()
     let tempDec = ""
@@ -192,6 +198,7 @@ function fixNumber(num) {
     if(array[0] == ",") array.splice(0,1)
     return tempNegative + array.join("") + "" + tempDec
 }
+//Tinh toan
 function result() {
     switch (operator) {
         case "+": r = Number(num1) + Number(num2)
